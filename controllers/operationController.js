@@ -16,13 +16,13 @@ export const getAllOperationsByOutcome = asyncHandler(async (req, res) => {
 
 export const getAllOperations = asyncHandler(async (req, res) => {
   const operations = await Operation.findAll({ include: Category, where: { active: true }, order: [["date", 'ASC']] })
-  // { include: Category, where: { active: true } }
+
   res.json(operations)
 })
 
 export const getLast10Operations = asyncHandler(async (req, res) => {
   const operations = await Operation.findAll({ include: Category, where: { active: true }, order: [["date", 'DESC']], limit: 10, })
-  // { include: Category, where: { active: true } }
+
   res.json(operations)
 })
 
@@ -52,8 +52,7 @@ export const addOrExtractOperation = asyncHandler(async (req, res) => {
 
 export const updateOperation = asyncHandler(async (req, res) => {
   const { description, amount, id } = req.body;
-  console.log(req.body)
-  console.log(id)
+
 
   if (!description || !amount) {
     return res.status(400).json({ message: 'All fields are required' })
@@ -83,11 +82,9 @@ export const updateOperation = asyncHandler(async (req, res) => {
 export const deleteOperation = asyncHandler(async (req, res) => {
 
   const { id } = req.body;
-  console.log('Entro aca')
-  console.log(req.body)
-  console.log(id)
+
   const foundOperation = await Operation.findByPk(id)
-  console.log(foundOperation)
+
 
   if (!foundOperation) {
     return res.status(401).json({ message: "Couldn't find any operation" })

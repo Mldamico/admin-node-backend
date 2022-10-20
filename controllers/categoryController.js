@@ -17,7 +17,6 @@ export const getAllCategories = asyncHandler(async (req, res) => {
 export const createCategory = asyncHandler(async (req, res) => {
   const { name } = req.body;
 
-  console.log(req.body)
   if (!name) {
     return res.status(400).json({ message: 'All fields are required' })
   }
@@ -40,7 +39,6 @@ export const deleteCategory = asyncHandler(async (req, res) => {
 
   const foundCategory = await Category.findByPk(id)
 
-  console.log(foundCategory)
   if (!foundCategory) {
     return res.status(401).json({ message: "Couldn't find any category" })
   }
@@ -54,7 +52,7 @@ export const deleteCategory = asyncHandler(async (req, res) => {
       categoryId: id
     }
   })
-  console.log(operation)
+
 
   res.json({ foundCategory })
 })
