@@ -18,7 +18,7 @@ export const Category = sequelize.define(
     },
     active: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true
+      defaultValue: true,
     },
 
   },
